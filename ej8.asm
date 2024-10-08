@@ -6,12 +6,12 @@ main:
     xor eax, eax
     mov eax, 10
     push eax
-    call sub-ess_par
-    pop 
+    call sub_ess_par
+    pop ecx 
     ret
     
         
-    sub-ess_par:
+    sub_ess_par:
     mov ebx, [esp + 4]
     shr ebx, 1
     jnc es_par
