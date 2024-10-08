@@ -1,27 +1,24 @@
 segment .data
-array1 db 1,2,3,4,5,6,7,8,9,10
-
-segment .data
 array1 dd 16, 16, 59, 91, 7, 62, 88, 64, 28, 94
 segment .text
 global main
 main:
+    mov ebp, esp; for correct debugging
     ;write your code here
     xor eax, eax
-    mov eax, array1
+    lea eax, array1
     push eax
-    call sub-num_mayor
-    pop
+    call sub_num_mayor
+    pop ebx
     ret
-    
-    
-    
-    sub-num_mayor:
+ 
+    sub_num_mayor:
     mov ecx, 9
     mov edx, 4
-    mov eax, [esp+4]
+    mov ebp, [esp+4]
+    mov eax, [ebp]
     for1:
-    mov ebx, [esp+4+edx]
+    mov ebx, [ebp+edx]
     cmp eax, ebx
     jg mayor
     mov eax, ebx
@@ -29,16 +26,3 @@ main:
     add edx, 4 
     loop for1
     ret
-   
-    
-    mov edx, 4
-    mov eax, [array1]
-    mov ecx, 9
-    for1:
-    mov ebx, [array1+edx]
-    cmp eax, ebx
-    jg mayor
-    mov eax, ebx
-    mayor:
-    add edx, 4    
-    loop for1
